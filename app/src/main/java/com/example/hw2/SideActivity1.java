@@ -8,6 +8,19 @@ import android.annotation.SuppressLint;
 
 public class SideActivity1 extends AppCompatActivity {
 
+    private final ListItem[] movieList = {
+            new ListItem("The Shawshank Redemption", R.drawable.shawshank_redemption),
+            new ListItem("The Godfather",R.drawable.the_godfather),
+            new ListItem("The Dark Knight",R.drawable.the_dark_knight),
+            new ListItem("The Godfather Part II",R.drawable.the_godfather_2),
+            new ListItem("12 Angry Men",R.drawable.angry_men),
+            new ListItem("Schindler's List",R.drawable.schindler_list),
+            new ListItem("The Lord of the Rings: The Return of the King",R.drawable.lotr_the_return_of_the_king),
+            new ListItem("Pulp Fiction",R.drawable.pulp_fiction),
+            new ListItem("The Lord of the Rings: The Fellowship of the Ring",R.drawable.lotr_the_fellowship_of_the_ring),
+            new ListItem("The Good, the Bad and the Ugly",R.drawable.the_good_the_bad)
+    };
+
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,10 +29,6 @@ public class SideActivity1 extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        String[] itemList = new String[100];
-        for (int i=0; i < 100; i++) {
-            itemList[i] = String.format("item %d", i);
-        }
-        recyclerView.setAdapter(new ListAdapter(itemList));
+        recyclerView.setAdapter(new ListAdapter(this, movieList));
     }
 }
