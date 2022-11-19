@@ -8,7 +8,7 @@ public class Movie {
 
     public Movie(String name, String score, int image) {
         this.name = name;
-        this.score = score;
+        this.score = String.format("Score: %s", score);
         this.image = image;
     }
 }

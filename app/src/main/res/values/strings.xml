@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">HW2</string>
-    <string name="btn1Text">TOP 10 BEST MOVIES</string>
-    <string name="btn2Text">TOP 10 WORST MOVIES</string>
+    <string name="btn1Text">TOP 10 BEST MOVIES BY IMDB</string>
+    <string name="btn2Text">TOP 10 WORST MOVIES BY IMDB</string>
+    <string name="name"><b><I>Name</I></b></string>
+    <string name="score">Score</string>
 </resources>

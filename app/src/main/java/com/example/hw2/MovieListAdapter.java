@@ -1,6 +1,7 @@
 package com.example.hw2;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class MovieListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         Movie movie = movieList[position];
         ((ViewHolder)viewHolder).name.setText(movie.name);
+        ((ViewHolder)viewHolder).name.setTypeface(null, Typeface.BOLD_ITALIC);
         ((ViewHolder)viewHolder).score.setText(movie.score);
         ((ViewHolder)viewHolder).image.setImageResource(movie.image);
     }
