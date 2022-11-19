@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">HW2</string>
-    <string name="btn1Text">click me!</string>
-    <string name="btn2Text">no, click me!</string>
+    <string name="btn1Text">TOP 10 BEST MOVIES</string>
+    <string name="btn2Text">TOP 10 WORST MOVIES</string>
 </resources>

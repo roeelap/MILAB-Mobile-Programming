@@ -7,17 +7,17 @@ import android.os.Bundle;
 
 public class SideActivity2 extends AppCompatActivity {
 
-    private final ListItem[] movieList = {
-            new ListItem("The Shawshank Redemption", R.drawable.shawshank_redemption),
-            new ListItem("The Godfather",R.drawable.the_godfather),
-            new ListItem("The Dark Knight",R.drawable.the_dark_knight),
-            new ListItem("The Godfather Part II",R.drawable.the_godfather_2),
-            new ListItem("12 Angry Men",R.drawable.angry_men),
-            new ListItem("Schindler's List",R.drawable.schindler_list),
-            new ListItem("The Lord of the Rings: The Return of the King",R.drawable.lotr_the_return_of_the_king),
-            new ListItem("Pulp Fiction",R.drawable.pulp_fiction),
-            new ListItem("The Lord of the Rings: The Fellowship of the Ring",R.drawable.lotr_the_fellowship_of_the_ring),
-            new ListItem("The Good, the Bad and the Ugly",R.drawable.the_good_the_bad)
+    private final Movie[] movieList = {
+            new Movie("Disaster Movie", "2.1", R.drawable.disaster_movie),
+            new Movie("Manos: The Hands of Fate", "2.2", R.drawable.manos),
+            new Movie("Birdemic: Shock and Terror", "2.3", R.drawable.birdemic),
+            new Movie("Superbabies: Baby Geniuses 2", "2.3", R.drawable.superbabies),
+            new Movie("The Hottie & the Nottie", "2.4", R.drawable.the_hottie),
+            new Movie("House of the Dead", "2.4", R.drawable.house_of_the_dead),
+            new Movie("Son of the Mask", "2.5", R.drawable.son_of_the_mask),
+            new Movie("Saving Christmas", "2.5", R.drawable.saving_christmas),
+            new Movie("Epic Movie", "2.5", R.drawable.epic_movie),
+            new Movie(" Battlefield Earth", "2.6", R.drawable.battlefield_earth)
     };
 
     @Override
@@ -27,6 +27,6 @@ public class SideActivity2 extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ListAdapter(this, movieList));
+        recyclerView.setAdapter(new MovieListAdapter(this, movieList));
     }
 }

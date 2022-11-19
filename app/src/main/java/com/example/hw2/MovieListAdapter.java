@@ -8,25 +8,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ListAdapter extends RecyclerView.Adapter {
+public class MovieListAdapter extends RecyclerView.Adapter {
 
     Context context;
-    private ListItem[] dataSet;
+    private Movie[] movieList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView name;
+        private final TextView score;
         private final ImageView image;
 
         public ViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.name);
+            score = view.findViewById(R.id.score);
             image = view.findViewById(R.id.image);
         }
     }
 
-    public ListAdapter(Context context, ListItem[] dataSet) {
+    public MovieListAdapter(Context context, Movie[] movieList) {
         this.context = context;
-        this.dataSet = dataSet;
+        this.movieList = movieList;
     }
 
     @Override
@@ -38,13 +40,14 @@ public class ListAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        ListItem listItem = dataSet[position];
-        ((ViewHolder)viewHolder).name.setText(listItem.name);
-        ((ViewHolder)viewHolder).image.setImageAlpha(listItem.image);
+        Movie movie = movieList[position];
+        ((ViewHolder)viewHolder).name.setText(movie.name);
+        ((ViewHolder)viewHolder).score.setText(movie.score);
+        ((ViewHolder)viewHolder).image.setImageResource(movie.image);
     }
 
     @Override
     public int getItemCount() {
-        return dataSet.length;
+        return movieList.length;
     }
 }
