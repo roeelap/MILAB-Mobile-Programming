@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "notificationChannel";
-    private static final long FIVE_MINUTES = 60 * 1000;
+    private static final long FIVE_MINUTES = 5 * 60 * 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
