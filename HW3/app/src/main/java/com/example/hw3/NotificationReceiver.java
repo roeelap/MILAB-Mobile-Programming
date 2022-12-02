@@ -76,9 +76,11 @@ public class NotificationReceiver extends BroadcastReceiver {
             PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_MUTABLE) :
             PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_ONE_SHOT);
 
+        // get random quote from list
         Random rnd = new Random();
         String rndQuote = quotes[rnd.nextInt(quotes.length)];
 
+        // create notification with the random quote
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("QUOTE OF THE MOMENT")

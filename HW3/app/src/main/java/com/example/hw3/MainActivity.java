@@ -8,7 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
-import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "notificationChannel";
@@ -19,10 +19,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // set up images to main activity
+        ImageView meme1 = (ImageView)findViewById(R.id.meme1);
+        meme1.setImageResource(R.drawable.meme1);
+        ImageView meme2 = (ImageView)findViewById(R.id.meme2);
+        meme2.setImageResource(R.drawable.meme2);
+
         registerNotificationChannel();
 
-        Button notifyButton = (Button)findViewById(R.id.notificationBtn);
-        notifyButton.setOnClickListener(view -> NotificationService.doActionNotification(MainActivity.this, new ResultReceiver(new Handler()), FIVE_MINUTES));
+        // create service that creates a notification every five minutes
+        NotificationService.doActionNotification(MainActivity.this, new ResultReceiver(new Handler()), FIVE_MINUTES);
     }
 
     protected void registerNotificationChannel() {

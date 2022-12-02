@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
-import android.widget.Toast;
 
 public class NotificationService extends IntentService {
     private static final String ACTION_NOTIFICATION = "com.example.hw3.action.NOTIFICATION";
@@ -50,7 +49,6 @@ public class NotificationService extends IntentService {
     }
 
     private void createAlarmManager(long period) {
-        Toast.makeText(this, "notification set!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, NotificationReceiver.class);
         @SuppressLint("UnspecifiedImmutableFlag") PendingIntent pendingIntent = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) ?
                 PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE) :
