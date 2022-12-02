@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "notificationChannel";
+    private static final long FIVE_MINUTES = 5 * 60 * 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         registerNotificationChannel();
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         Button notifyButton = (Button)findViewById(R.id.notificationBtn);
         notifyButton.setOnClickListener(view -> {
@@ -32,12 +35,9 @@ public class MainActivity extends AppCompatActivity {
                     PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE) :
                     PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            long timeAtButtonClick = System.currentTimeMillis();
-            long tenSeconds = 1000;
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                    timeAtButtonClick,
-                    tenSeconds,
+                    System.currentTimeMillis(),
+                    FIVE_MINUTES,
                     pendingIntent);
         });
     }
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void registerNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager nm = (NotificationManager) getSystemService(NotificationManager.class);
-            nm.createNotificationChannel(new NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_HIGH));
+            nm.createNotificationChannel(new NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_DEFAULT));
         }
     }
 }
