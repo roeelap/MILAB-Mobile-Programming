@@ -2,20 +2,17 @@ package com.example.hw3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "notificationChannel";
-    private static final long FIVE_MINUTES = 5 * 60 * 1000;
+    private static final long FIVE_MINUTES = 60 * 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         registerNotificationChannel();
 
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
         Button notifyButton = (Button)findViewById(R.id.notificationBtn);
-        notifyButton.setOnClickListener(view -> {
-            Toast.makeText(this, "notification set!", Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(this, NotificationReceiver.class);
-            @SuppressLint("UnspecifiedImmutableFlag") PendingIntent pendingIntent = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) ?
-                    PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE) :
-                    PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis(),
-                    FIVE_MINUTES,
-                    pendingIntent);
-        });
+        notifyButton.setOnClickListener(view -> NotificationService.doActionNotification(MainActivity.this, new ResultReceiver(new Handler()), FIVE_MINUTES));
     }
 
     protected void registerNotificationChannel() {
