@@ -9,12 +9,13 @@ const isPathExists = (path) => {
     return fs.existsSync(path);
 }
 
-app.get('/files', (req, res) => {
-    let file_name = req.query.file_name || null;
-    let path = `./files/${file_name}`
-    // check that an id and a task is given
+app.get('/files/:file_name*', (req, res) => {
+    let file_name = req.params.file_name || null;
+    let path = `./files/${file_name}`;
+    
+    // check that an valid path is given
     if (file_name === null || !isPathExists(path)) {
-        res.send('<h1>Please provide a valid file name</h1>');
+        res.send('<h1>PLEASE PROVIDE A VALID FILE NAME</h1>');
         return;
     }
 
