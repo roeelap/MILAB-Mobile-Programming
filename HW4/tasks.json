@@ -1,1 +1,24 @@
-{"tasks":[{"id":"1","task":"enjoy life"},{"id":"2","task":"homework"},{"id":"3","task":"have a nap"},{"id":"4","task":"have fun"},{"id":"5","task":"homework2"}]}
+{
+    "tasks": [
+        {
+            "id":"1",
+            "task":"enjoy life"
+        },
+        {
+            "id":"2",
+            "task":"homework"
+        },
+        {
+            "id":"3",
+            "task":"have a nap"
+        },
+        {
+            "id":"4",
+            "task":"have fun"
+        },
+        {
+            "id":"5",
+            "task":"homework2"
+        }
+    ]
+}
