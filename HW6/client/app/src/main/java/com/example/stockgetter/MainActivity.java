@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    // This method is called when the user clicks the "Fetch" button
     public void fetchStock(final View view) {
         final StockFetcher fetcher = new StockFetcher(view.getContext());
         final String stockName = ((EditText)findViewById(R.id.editTextStockName)).getText().toString();
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
 
         fetcher.dispatchRequest(stockName, new StockFetcher.StockResponseListener() {
+            // This method is called when the response is received
             @Override
             public void onResponse(StockFetcher.StockResponse response) {
                 progressDialog.hide();
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                // Display the stock price
                 String output = "Stock price for " + response.stockName + " is " + response.stockPrice + "$";
                 ((TextView)findViewById(R.id.stockPriceOutput)).setText(output);
             }
