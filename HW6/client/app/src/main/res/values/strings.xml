@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Stock Getter</string>
+    <string name="title">Stock Getter</string>
+    <string name="inputPlaceholder">Stock Name</string>
+    <string name="buttonText">Fetch</string>
+</resources>
