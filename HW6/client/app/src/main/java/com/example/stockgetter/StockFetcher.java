@@ -1,6 +1,7 @@
 package com.example.stockgetter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,14 +15,16 @@ import org.json.JSONObject;
 
 public class StockFetcher {
     private RequestQueue _queue;
-    private final static String REQUEST_URL = "http://10.0.2.2:8080/stock";
+    private final static String REQUEST_URL = "http://10.0.0.2:8080/stocks";
 
     public class StockResponse {
         public boolean isError;
-        public double stockPrice;
+        public String stockName;
+        public String stockPrice;
 
-        public StockResponse(boolean isError, double stockPrice) {
+        public StockResponse(boolean isError, String stockName, String stockPrice) {
             this.isError = isError;
+            this.stockName = stockName;
             this.stockPrice = stockPrice;
         }
     }
@@ -35,34 +38,32 @@ public class StockFetcher {
     }
 
     private StockResponse createErrorResponse() {
-        return new StockResponse(true, -1);
+        return new StockResponse(true, null, null);
     }
 
     public void dispatchRequest(final String stockName, final StockResponseListener listener) {
-        JSONObject postBody = new JSONObject();
-        try {
-            postBody.put("stockName", stockName);
-        }
-        catch (JSONException e) {
-            listener.onResponse(createErrorResponse());
-            return;
-        }
+        String url = REQUEST_URL + "?stockName=" + stockName;
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, REQUEST_URL, postBody,
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        Log.d("StockGetter", "Got response: " + response.toString());
                         try {
-                            StockResponse res = new StockResponse(false, response.getDouble("price"));
+                            String stockName = response.getString("stockName");
+                            String stockPrice = response.getString("stockPrice");
+                            StockResponse res = new StockResponse(false, stockName, stockPrice);
                             listener.onResponse(res);
                         }
                         catch (JSONException e) {
+                            Log.e("StockGetter", "Error while parsing response: " + e.getMessage());
                             listener.onResponse(createErrorResponse());
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("StockGetter", "Error while parsing response: " + error.getMessage());
                 listener.onResponse(createErrorResponse());
             }
         });

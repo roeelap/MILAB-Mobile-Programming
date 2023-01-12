@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="300dp"
-        android:layout_height="47dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/title"
         android:textSize="30sp"
@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="76dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/inputPlaceholder"
+        android:inputType="textCapCharacters"
+        android:hint="@string/stockNameHint"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -46,7 +46,8 @@
         android:id="@+id/stockPriceOutput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:textSize="20sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

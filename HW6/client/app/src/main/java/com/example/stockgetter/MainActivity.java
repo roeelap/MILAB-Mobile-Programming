@@ -2,7 +2,6 @@ package com.example.stockgetter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -26,17 +25,17 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
 
         fetcher.dispatchRequest(stockName, new StockFetcher.StockResponseListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(StockFetcher.StockResponse response) {
                 progressDialog.hide();
 
                 if (response.isError) {
-                    Toast.makeText(view.getContext(), "Error while fetching stock price", Toast.LENGTH_LONG);
+                    Toast.makeText(view.getContext(), "Error while fetching stock price", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                ((TextView)MainActivity.this.findViewById(R.id.stockPriceOutput)).setText(Double.toString(response.stockPrice));
+                String output = "Stock price for " + response.stockName + " is " + response.stockPrice + "$";
+                ((TextView)findViewById(R.id.stockPriceOutput)).setText(output);
             }
         });
     }

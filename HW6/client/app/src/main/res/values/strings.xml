@@ -3,4 +3,5 @@
     <string name="title">Stock Getter</string>
     <string name="inputPlaceholder">Stock Name</string>
     <string name="buttonText">Fetch</string>
+    <string name="stockNameHint">Stock Name</string>
 </resources>
